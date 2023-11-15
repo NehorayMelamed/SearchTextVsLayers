@@ -23,7 +23,7 @@ docker pull nehoraymelmed/searc_layers_service:tag_name
 
 
 ## API Usage
-For detailed API usage and examples, please refer to the [API Documentation](./FlaskSearch/api_documentation.html) included in this repository.
+For detailed API usage and examples, please refer to the [API Documentation](./api_documentation.html) included in this repository.
 
 ## Testing the API
 Ensure you have all necessary Python requirements installed:

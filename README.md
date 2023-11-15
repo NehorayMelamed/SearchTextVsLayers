@@ -2,6 +2,7 @@
 
 ## Introduction
 Welcome to the Flask Search API repository! This project offers a powerful search API built with Flask, capable of finding the most similar names in a dataset based on input sentences.
+Special thanks to [@origiladiii](https://github.com/fgit) for their contributions to this project. Their expertise and insights were invaluable in developing this API.
 
 ## Features
 - Search functionality to find similar names.

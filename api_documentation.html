@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Search API Documentation</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h2 { color: #444; }
+        pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<h1>Flask Search API Documentation</h1>
+
+<h2>1. Search</h2>
+<p>Endpoint to find the most similar name based on the input sentence.</p>
+<pre>
+<b>Endpoint:</b> /search
+<b>Method:</b> POST
+<b>Request Body:</b>
+{
+    "sentence": "input sentence"
+}
+<b>Response Codes:</b>
+- 200: Success
+- 404: No similar name found above the threshold
+- 400: Bad request (e.g., missing input sentence)
+- 500: Internal server error
+
+<b>Response Example (Success):</b>
+{
+    "success": 200,
+    "data": {
+        "name": "found name",
+        "geometry": "geometry data",
+        "layer_id": "layer ID"
+    }
+}
+
+<b>Response Example (Error):</b>
+{
+    "error": 404,
+    "data": "No similar name found above the threshold."
+}
+</pre>
+
+<h2>2. Is Service Alive</h2>
+<p>Endpoint to check if the service is running.</p>
+<pre>
+<b>Endpoint:</b> /is_service_alive
+<b>Method:</b> GET
+<b>Response Codes:</b>
+- 200: Service is alive
+- 500: Internal server error
+
+<b>Response Example:</b>
+{
+    "success": 200,
+    "data": "Service is alive"
+}
+</pre>
+
+</body>
+</html>

@@ -5,7 +5,7 @@ import json
 
 # Base URL of your Flask application
 # Base URL of your Flask application
-BASE_URL = "http://0.0.0.0:8000"
+BASE_URL = "http://0.0.0.0:8001"
 
 
 def test_search():
@@ -13,15 +13,16 @@ def test_search():
     data = {
   "sentences": [
     "منطقة ال الحناوي الكرام",
-    "Greenhouse",
-     "منزل مصطفى يوسف ابو مجدي",
-    "Third sentence to search"
+    "منطقة ال الحنا",
+    "شارع عمر المختار",
+    "شارع القدس",
+
   ]
 }
     headers = {'Content-Type': 'application/json'}
-    # s = time.time()
+    s = time.time()
     response = requests.post(url, data=json.dumps(data), headers=headers)
-    # print(time.time() - s)
+    print(time.time() - s)
     print("Search Endpoint Response:")
     print(response.status_code, response.json())
 

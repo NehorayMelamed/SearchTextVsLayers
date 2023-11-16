@@ -5,20 +5,20 @@ import json
 
 # Base URL of your Flask application
 # Base URL of your Flask application
-BASE_URL = "http://0.0.0.0:8000"
+BASE_URL = "http://0.0.0.0:8001"
 
 
 def test_search():
     url = f"{BASE_URL}/search"
     data = {
   "sentences": [
-    "منطقة ال الحناوي الكرام",
-    "منطقة ال الحنا",
-    "شارع عمر المختار",
-    "شارع القدس",
+    "קאנטרי קלאב",
+    "החשמל",
+    "Art Design"
 
   ]
 }
+
     headers = {'Content-Type': 'application/json'}
     s = time.time()
     response = requests.post(url, data=json.dumps(data), headers=headers)

@@ -17,9 +17,9 @@ Ensure you have Docker installed on your system. If not, follow the installation
 - [Docker for Linux](https://docs.docker.com/engine/install/)
 
 ### Pull the Docker Image
-from the link -> [Docker pull web page](https://hub.docker.com/r/nehoraymelamed/searc_layers_service)
+from the link -> [Docker pull web page](https://hub.docker.com/r/nehoraymelamed/search_sentence_vs_layer)
 ```bash
-docker pull nehoraymelmed/searc_layers_service:tag_name
+docker pull nehoraymelamed/search_sentence_vs_layer
 ```
 
 

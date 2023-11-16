@@ -5,7 +5,7 @@ import json
 
 # Base URL of your Flask application
 # Base URL of your Flask application
-BASE_URL = "http://0.0.0.0:8001"
+BASE_URL = "http://0.0.0.0:8000"
 
 
 def test_search():

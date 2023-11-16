@@ -1,3 +1,5 @@
+import time
+
 import requests
 import json
 
@@ -9,12 +11,17 @@ BASE_URL = "http://0.0.0.0:8000"
 def test_search():
     url = f"{BASE_URL}/search"
     data = {
-        "sentence": "صيدلية النصارية",
-        # Note: 'json_path' is not included as it's now a constant in your application
-    }
+  "sentences": [
+    "منطقة ال الحناوي الكرام",
+    "Greenhouse",
+     "منزل مصطفى يوسف ابو مجدي",
+    "Third sentence to search"
+  ]
+}
     headers = {'Content-Type': 'application/json'}
-
+    # s = time.time()
     response = requests.post(url, data=json.dumps(data), headers=headers)
+    # print(time.time() - s)
     print("Search Endpoint Response:")
     print(response.status_code, response.json())
 

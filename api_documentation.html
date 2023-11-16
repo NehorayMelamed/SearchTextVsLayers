@@ -15,34 +15,45 @@
 <h1>Flask Search API Documentation</h1>
 
 <h2>1. Search</h2>
-<p>Endpoint to find the most similar name based on the input sentence.</p>
+<p>Endpoint to process a list of sentences and find the most similar names for each sentence.</p>
 <pre>
 <b>Endpoint:</b> /search
 <b>Method:</b> POST
 <b>Request Body:</b>
 {
-    "sentence": "input sentence"
+    "sentences": [
+        "First sentence to search",
+        "Second sentence to search",
+        ...
+    ]
 }
 <b>Response Codes:</b>
 - 200: Success
-- 404: No similar name found above the threshold
-- 400: Bad request (e.g., missing input sentence)
+- 400: Bad request (e.g., no input sentences provided)
 - 500: Internal server error
 
 <b>Response Example (Success):</b>
 {
-    "success": 200,
-    "data": {
-        "name": "found name",
-        "geometry": "geometry data",
-        "layer_id": "layer ID"
-    }
+    "status": "success",
+    "data": [
+        {
+            "name": "found name for first sentence",
+            "geometry": "geometry data",
+            "layer_id": "layer ID"
+        },
+        {
+            "name": "found name for second sentence",
+            "geometry": "geometry data",
+            "layer_id": "layer ID"
+        },
+        ...
+    ]
 }
 
 <b>Response Example (Error):</b>
 {
-    "error": 404,
-    "data": "No similar name found above the threshold."
+    "status": "error",
+    "data": "Error message"
 }
 </pre>
 
@@ -57,7 +68,7 @@
 
 <b>Response Example:</b>
 {
-    "success": 200,
+    "status": "success",
     "data": "Service is alive"
 }
 </pre>

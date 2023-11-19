@@ -2,3 +2,4 @@ Flask
 fuzzywuzzy
 rank_bm25
 fuzzywuzzy
+shapely

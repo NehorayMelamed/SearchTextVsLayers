@@ -15,7 +15,7 @@
 <h1>Flask Search API Documentation</h1>
 
 <h2>1. Search</h2>
-<p>Endpoint to process a list of sentences and find the most similar names for each sentence.</p>
+<p>Endpoint to process a list of sentences and find the most similar names for each sentence, along with their geometries and layer IDs.</p>
 <pre>
 <b>Endpoint:</b> /search
 <b>Method:</b> POST
@@ -37,14 +37,26 @@
     "status": "success",
     "data": [
         {
-            "name": "found name for first sentence",
-            "geometry": "geometry data",
-            "layer_id": "layer ID"
+            "response_status": {
+                "code": "Success",
+                "details": null
+            },
+            "data": {
+                "name": "found name for first sentence",
+                "geometry": "POINT (34.22999264890063 31.32897455472972)",
+                "layer_id": "layer ID"
+            }
         },
         {
-            "name": "found name for second sentence",
-            "geometry": "geometry data",
-            "layer_id": "layer ID"
+            "response_status": {
+                "code": "Error",
+                "details": "No similar name found above the threshold"
+            },
+            "data": {
+                "geometry": null,
+                "layer_id": null,
+                "name": null
+            }
         },
         ...
     ]

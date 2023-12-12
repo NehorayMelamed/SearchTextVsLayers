@@ -5,7 +5,7 @@ import json
 
 # Base URL of your Flask application
 # Base URL of your Flask application
-BASE_URL = "http://0.0.0.0:8001"
+BASE_URL = "http://127.0.0.1:8001"
 
 
 def test_search():
@@ -13,9 +13,9 @@ def test_search():
     data = {
   "sentences": [
     "קאנטרי קלאב",
-    "החשמל",
+    "hamlet",
     "Art Design",
-"بعد دوار الشيخ زايد شمالا (بيت لاهيا)",
+"بعد دوار الشيخ ايد شمالا (بيت لاهيا)",
       "الله أكبر والنصر للاسلام"
   ]
 }

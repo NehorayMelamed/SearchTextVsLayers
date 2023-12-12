@@ -25,13 +25,16 @@ def find_midpoint(geometry):
         print(f"Error processing geometry: {e}")
     return None  # Returns None for Points or other types
 
-def find_most_similar(input_sentence, tokenized_corpus, bm25):
+def find_most_similar(input_sentence, tokenized_corpus, bm25, top_n=50):
     tokenized_query = input_sentence.split(" ")
     scores = bm25.get_scores(tokenized_query)
 
+    # Get top N documents based on BM25 scores
+    top_indexes = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)[:top_n]
+
     most_similar_index = -1
     max_similarity = 0
-    for idx, score in enumerate(scores):
+    for idx in top_indexes:
         similarity = fuzz.ratio(input_sentence, ' '.join(tokenized_corpus[idx]))
         if similarity > max_similarity:
             max_similarity = similarity
@@ -39,8 +42,9 @@ def find_most_similar(input_sentence, tokenized_corpus, bm25):
 
     return most_similar_index, max_similarity
 
-def search_in_json(input_sentence, threshold=70):
-    with open(JSON_PATH, 'r') as f:
+
+def search_in_json(input_sentence, threshold=90):
+    with open(JSON_PATH, 'r', encoding="utf8") as f:
         data = json.load(f)
 
     names = [normalize_text(name) for name in data['names']]
@@ -62,7 +66,7 @@ def search_in_json(input_sentence, threshold=70):
                 geometry_data = load_wkt(geometry_data)
             except Exception as e:
                 print(f"Error parsing WKT geometry: {e}")
-                return {"error": "Invalid geometry format"}
+                return {"response_status": {"code": "Error", "details": "Invalid geometry format"}, "data": {'geometry': None, 'layer_id': None, 'name': None}}
 
         # Check and convert geometry type
         if geometry_data:
@@ -74,10 +78,17 @@ def search_in_json(input_sentence, threshold=70):
                 # For Points or other types, convert back to WKT
                 geometry_data = geometry_data.wkt
 
-        return {'name': data['names'][idx], 'geometry': geometry_data, 'layer_id': layer_id}
+        return {
+            "response_status": {"code": "Success", "details": None},
+            "data": {
+                'geometry': geometry_data,
+                'layer_id': layer_id,
+                'name': data['names'][idx],
+                'score': similarity_score  # Include similarity score here
+            }
+        }
     else:
-        return {"error": "No similar name found above the threshold."}
-
+        return {"response_status": {"code": "Error", "details": "No similar name found above the threshold"}, "data": {'geometry': None, 'layer_id': None, 'name': None}}
 
 def process_sentence(sentence):
     return search_in_json(sentence)
@@ -113,7 +124,6 @@ def is_service_alive():
 def handle_500_error(e):
     print(f"Internal server error: {e}")
     return jsonify({"status": "error", "data": "Internal server error occurred"}), 500
-
 
 
 if __name__ == '__main__':
